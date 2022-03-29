@@ -1,0 +1,13 @@
+--- permissions.hpp	2022-03-29 13:07:06.738448606 +0800
++++ permissions_qnx.hpp	2022-03-29 13:07:14.403117752 +0800
+@@ -29,6 +29,10 @@
+ 
+ #include <boost/interprocess/detail/win32_api.hpp>
+ 
++#else
++
++#include <sys/stat.h>
++
+ #endif
+ 
+ #endif   //#ifndef BOOST_INTERPROCESS_DOXYGEN_INVOKED

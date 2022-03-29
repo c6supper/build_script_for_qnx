@@ -1,0 +1,5 @@
+using gcc : aarch64 : aarch64-unknown-nto-qnx7.0.0-g++ ;
+link : shared ;
+target-os : qnx ;
+cflags :  -pipe -march=armv8-a -Wall -D_QNX_SOURCE -D_XOPEN_SOURCE=700 ;
+cxxflags :  -pipe -march=armv8-a -Wall -D_QNX_SOURCE -D_XOPEN_SOURCE=700 ;
