@@ -30,7 +30,7 @@ if [ $? -eq 0 ]; then
     cmake -DFOONATHAN_MEMORY_CONTAINER_NODE_SIZES_IMPL=../../foonathan_memory/qnx/aarch64/container_node_sizes_impl.hpp \
       -DFOONATHAN_MEMORY_BUILD_EXAMPLES=OFF -DFOONATHAN_MEMORY_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE="Release" \
       -DCMAKE_TOOLCHAIN_FILE=$QNX_ROOT/cmake/QNXToolchain.cmake -DCMAKE_INSTALL_PREFIX=$QNX_TARGET/aarch64le/usr/ ../ &&
-    make -j16 && make install
+    make -j16 && make install && cd ../../
 fi
 
 if [ $? -ne 0 ]; then
@@ -52,10 +52,10 @@ if [ $? -eq 0 ]; then
   #   cd ../../asio/asio && ./autogen.sh && 
   cd Fast-DDS && mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE="Release" -DTHIRDPARTY=ON -DCMAKE_CXX_FLAGS="-fpermissive" \
-      -DCMAKE_TOOLCHAIN_FILE=$QNX_ROOT/cmake/QNXToolchain.cmake -DCMAKE_INSTALL_PREFIX=$QNX_TARGET/aarch64le/usr/ \
+      -DCMAKE_TOOLCHAIN_FILE=$QNX_ROOT/cmake/QNXToolchain.cmake -DCMAKE_INSTALL_PREFIX=$QNX_TARGET/aarch64le/usr/lib/ \
       -DCMAKE_SHARED_LINKER_FLAGS="-lsocket" -DFASTDDS_STATISTICS=ON \
       -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE=ONLY \
-      -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY \
+      -DCMAKE_FIND_ROOT_PATH_MODE_PACKAGE=ONLY -Dfoonathan_memory_DIR=$QNX_TARGET/aarch64le/usr/lib/foonathan_memory/cmake \
 	    -DOPENSSL_CRYPTO_LIBRARY=$QNX_TARGET/aarch64le/usr/lib/libcrypto.a \
 	    -DOPENSSL_SSL_LIBRARY=$QNX_TARGET/aarch64le/usr/lib/libssl.a  ../ &&
       make -j64 && make install
